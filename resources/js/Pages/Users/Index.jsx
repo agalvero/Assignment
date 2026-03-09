@@ -164,13 +164,13 @@ export default function Index({ auth, users, filters }) {
                                                 </span>
                                             )}
                                         </td>
-                                        {/* Last Login Data Cell */}
+                                        {}
                                         <td className="p-4">
                                             <span className={`text-sm font-medium ${u.last_login === 'Never' ? 'text-gray-400 italic' : 'text-gray-600'}`}>
                                                 {u.last_login}
                                             </span>
                                         </td>
-                                        {/* Member Since Data Cell */}
+                                        {}
                                         <td className="p-4">
                                             <span className="text-sm text-gray-500 font-medium">
                                                 {u.formatted_date}

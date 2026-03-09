@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        // We use table() instead of create() here to MODIFY the existing table
+        
         $table->timestamp('last_login_at')->nullable()->after('role');
     });
 }

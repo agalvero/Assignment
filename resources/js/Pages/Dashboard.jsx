@@ -11,7 +11,7 @@ export default function Dashboard({ auth, totalUsers, adminCount }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    {/* WELCOME HERO SECTION */}
+                    {}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg border-b-4 border-indigo-500">
                         <div className="p-10 text-center">
                             <div className="mb-6 flex justify-center">
@@ -59,21 +59,21 @@ export default function Dashboard({ auth, totalUsers, adminCount }) {
                         </div>
                     </div>
 
-                    {/* STATS GRID */}
+                    {}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                        {/* 1. Total Accounts (Replaced System Status) */}
+                        {}
                         <div className="bg-white p-6 rounded-lg shadow text-center border-t-2 border-indigo-200">
                             <div className="text-gray-500 text-sm uppercase font-bold tracking-wider">Total Accounts</div>
                             <div className="text-2xl font-bold text-indigo-600">{totalUsers} Users</div>
                         </div>
 
-                        {/* 2. Admin Distribution (Replaced Database) */}
+                        {}
                         <div className="bg-white p-6 rounded-lg shadow text-center border-t-2 border-green-200">
                             <div className="text-gray-500 text-sm uppercase font-bold tracking-wider">Security Profile</div>
                             <div className="text-2xl font-bold text-green-600">{adminCount} Admins</div>
                         </div>
 
-                        {/* 3. Personal Access Level */}
+                        {}
                         <div className="bg-white p-6 rounded-lg shadow text-center border-t-2 border-orange-200">
                             <div className="text-gray-500 text-sm uppercase font-bold tracking-wider">Your Access</div>
                             <div className="text-2xl font-bold text-orange-500 uppercase">{auth.user.role}</div>

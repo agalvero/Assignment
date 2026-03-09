@@ -20,7 +20,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'last_login_at', // Added to allow updates
+        'last_login_at',
     ];
 
     /**
@@ -43,7 +43,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'last_login_at' => 'datetime', // Cast to Carbon instance
+            'last_login_at' => 'datetime', 
         ];
     }
 }

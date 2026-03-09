@@ -11,9 +11,7 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    /**
-     * Display the user list with search, member dates, and last login activity.
-     */
+    
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -25,10 +23,9 @@ class UserController extends Controller
             })
             ->get()
             ->map(function ($user) {
-                // 1. Static date for "Member Since"
+                
                 $user->formatted_date = $user->created_at->format('M d, Y');
                 
-                // 2. Dynamic string for "Last Login" (e.g., "2 hours ago")
                 $user->last_login = $user->last_login_at 
                     ? Carbon::parse($user->last_login_at)->diffForHumans() 
                     : 'Never';
