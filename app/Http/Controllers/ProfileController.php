@@ -15,6 +15,7 @@ class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
+     * This is the "Safe Zone" where standard users manage themselves.
      */
     public function edit(Request $request): Response
     {
@@ -25,10 +26,11 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Update the user's profile information (Name and Email).
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // fill() uses the validated data from your ProfileUpdateRequest
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -37,11 +39,12 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
      * Delete the user's account.
+     * Includes a security check for the current password.
      */
     public function destroy(Request $request): RedirectResponse
     {
