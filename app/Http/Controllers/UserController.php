@@ -59,7 +59,6 @@ class UserController extends Controller
             "Expires"             => "0"
         ];
 
-        // Added 'Last Login' to the CSV columns
         $columns = ['ID', 'Name', 'Email', 'Role', 'Member Since', 'Last Login'];
 
         $callback = function() use($users, $columns) {
@@ -147,7 +146,7 @@ class UserController extends Controller
     }
 
     /**
-     * Delete a user.
+     * Delete a single user.
      */
     public function destroy(User $user)
     {
@@ -156,5 +155,34 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
         return abort(403);
+    }
+
+    /**
+     * NEW: Bulk Delete users (Admin Only).
+     */
+    public function bulkDestroy(Request $request)
+    {
+        // 1. Authorization check
+        if (Auth::user()->role !== 'admin') {
+            return abort(403);
+        }
+
+        // 2. Validation
+        $validated = $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'exists:users,id',
+        ]);
+
+        // 3. Security: Filter out the current Admin's ID so they don't delete themselves
+        $idsToDelete = array_filter($validated['ids'], function($id) {
+            return $id != Auth::id();
+        });
+
+        // 4. Perform Delete
+        if (!empty($idsToDelete)) {
+            User::whereIn('id', $idsToDelete)->delete();
+        }
+
+        return redirect()->route('users.index');
     }
 }
